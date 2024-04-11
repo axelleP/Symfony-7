@@ -32,9 +32,17 @@ Création d'une entité :
 Création d'une migration : `php bin/console make:migration`
 Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 
+### Créer un système d'authentification utilisateur
+- `php bin/console make:user`
+- compléter l'entité user si besoin en ligne de commande (`php bin/console make:entity`) et/ou dans le fichier src\Entity\User.php
+- créer et exécuter la migration
+- exécuter et remanier le code généré par `php bin/console make:security:form-login`
+- plus d'infos : https://symfony.com/doc/current/security.html#authentication-identifying-logging-in-the-user
+
 ## 3) Commandes
 - nettoyer le cache : php bin/console cache:clear
 - liste des commandes disponibles : `php bin/console`
+- avoir le détail d'une commande en rajoutant `--help`. ex. : `php bin/console doctrine:fixtures:load --help`
 - exemples commandes :
     - liste des routes définies : `php bin/console debug:router`
     - créer un contrôleur : `php bin/console make:controller HomeController`
@@ -43,7 +51,7 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
     - créer des données de tests : 
         - installer la bibliothèque : `composer require orm-fixtures --dev`
         - créer une fixture : `php bin/console make:fixture`
-        - lancer les fixtures : `php bin/console doctrine:fixtures:load` ⚠️ les données en bdd sont effacées
+        - lancer les fixtures : `php bin/console doctrine:fixtures:load` ou `php bin/console doctrine:fixtures:load --append` pour ne pas supprimer les données existantes
 
 ## 4) Extensions
 - TWIG pack de Bajdzis

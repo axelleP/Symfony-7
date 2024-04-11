@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
         $faker = Factory::create();
 
         $user = new User();
-        $user->setRole('guest');
+        $user->setRoles(['ROLE_USER']);
         $user->setUsername($faker->userName());
         $user->setEmail($faker->unique()->safeEmail());
         $user->setPassword($hash);

@@ -3,8 +3,8 @@
         <ul>
             <li><a href="{{ path('home') }}">{{ 'home'|trans({}, 'menu') }}</a></li>
             <li><a href="{{ path('articles') }}">{{ 'list'|trans({}, 'article') }}</a></li>
-            {% if app.user is not null %}
-                <li><a onclick="js:return confirm('{{ 'confirm_signout'|trans({}, 'action') }}')" href="">{{ 'signout'|trans({}, 'action') }}</a></li> 
+            {% if app.user %}
+                <li><a onclick="js:return confirm('{{ 'confirm_signout'|trans({}, 'actions') }}')" href="{{ path('app_logout') }}">{{ 'signout'|trans({}, 'actions') }}</a></li> 
             {% endif %}
         </ul>
     </nav>

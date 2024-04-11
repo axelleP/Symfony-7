@@ -18,6 +18,7 @@
             <option value="{{ path('locale.change', {locale: 'en'|trans({}, 'localization')  })}}" {% if app.locale == 'en'|trans({}, 'localization') %} selected {% endif %}>{{ 'english'|trans({}, 'localization') }}</option>
             <option value="{{ path('locale.change', {locale: 'fr'|trans({}, 'localization')  })}}" {% if app.locale == 'fr'|trans({}, 'localization') %} selected {% endif %}>{{ 'french'|trans({}, 'localization') }}</option>
         </select>
+        <br/><br/>
         {% block body %}{% endblock %}
     </body>
 </html>
