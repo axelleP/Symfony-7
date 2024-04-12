@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'view'|trans({}, 'article') }}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ 'name'|trans({}, 'article') }}</th>
+                <td>{{ article.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'description'|trans({}, 'article') }}</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'price'|trans({}, 'article') }}</th>
+                <td>{{ article.price|format_currency('EUR') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'image'|trans({}, 'article') }}</th>
+                <td>{{ article.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <a href="{{ path('app_article_index') }}">{{ 'cancel'|trans({}, 'actions') }}</a>
+{% endblock %}

@@ -4,8 +4,9 @@
 
 {% block body %}
 
+{{ 'welcome'|trans({}, 'home') }}
 {% if app.user %}
-    {{ 'welcome'|trans({}, 'home') }} {{ app.user.username }}
+    {{ app.user.username }}
 {% endif %}
 
 <br/><br/>

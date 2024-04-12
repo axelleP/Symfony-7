@@ -21,7 +21,7 @@ class UserController extends AbstractController
     public function changeLocale(Request $request, string $locale): Response
     {
         $request->getSession()->set('_locale', $locale);
-        return $this->redirectToRoute('home');
+        return $this->redirect($request->headers->get('referer'));
     }
 
     #[Route(path: '/login', name: 'app_login')]

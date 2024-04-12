@@ -6,6 +6,7 @@ return [
     'view' => 'Article',
     'list' => 'Liste d\'articles',
     'form' => 'Formulaire article',
+    'no_article' => 'Aucun articles trouvés',
     'name' => 'Nom',
     'description' => 'Description',
     'price' => 'Prix',

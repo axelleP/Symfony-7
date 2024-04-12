@@ -17,6 +17,9 @@ Exécuter `symfony server:start` et se rendre sur http://localhost:8000/
 - personnaliser les pages d'erreurs : 
     - exécuter `composer require symfony/twig-pack`
     - redéfinir les pages dans templates\bundles\TwigBundle\Exception\...
+- pouvoir utiliser les filtres de Twig : 
+    - date, nombre : `composer require twig/intl-extra`
+    - chaîne : `composer require twig/string-extra`
 
 ### Créer la base de données 
 Création de la base :
@@ -29,7 +32,7 @@ Création d'une entité :
 - `php bin/console make:entity`
 - commpléter le fichier de l'entité générée (ex. ajouter un unique)
 
-Création d'une migration : `php bin/console make:migration`
+Création d'une migration : `php bin/console make:migration`    
 Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 
 ### Créer un système d'authentification utilisateur
@@ -40,19 +43,21 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 - plus d'infos : https://symfony.com/doc/current/security.html#authentication-identifying-logging-in-the-user
 
 ## 3) Commandes
-- nettoyer le cache : php bin/console cache:clear
+- nettoyer le cache : `php bin/console cache:clear`
 - liste des commandes disponibles : `php bin/console`
 - avoir le détail d'une commande en rajoutant `--help`. ex. : `php bin/console doctrine:fixtures:load --help`
 - exemples commandes :
     - liste des routes définies : `php bin/console debug:router`
+    - créer automatiquement contrôleur/liste/vue/formulaire/... (CRUD) pour une entité donnée : `php bin/console make:crud`
     - créer un contrôleur : `php bin/console make:controller HomeController`
-    - créer un listener sur les requêtes : `php bin/console make:listener LocaleListener` puis choisir kernel.request
     - créer un modèle : `php bin/console make:entity`
+    - créer un formulaire dans une classe : `php bin/console make:form`
     - créer des données de tests : 
         - installer la bibliothèque : `composer require orm-fixtures --dev`
         - créer une fixture : `php bin/console make:fixture`
         - lancer les fixtures : `php bin/console doctrine:fixtures:load` ou `php bin/console doctrine:fixtures:load --append` pour ne pas supprimer les données existantes
-
+    - créer un listener sur les requêtes : `php bin/console make:listener LocaleListener` puis choisir `kernel.request`
+    
 ## 4) Extensions
 - TWIG pack de Bajdzis
 
@@ -63,5 +68,10 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 
 ## 6) Documentation
 - Symfony : https://symfony.com/doc/current/index.html
-    - variables globales accessibles : https://symfony.com/doc/current/templates.html#the-app-global-variable 
-    - configurer la base de données : https://symfony.com/doc/current/doctrine.html#configuring-the-database
+- variables globales accessibles : https://symfony.com/doc/current/templates.html#the-app-global-variable 
+- doctrine : https://symfony.com/doc/current/doctrine.html (entity, migration, récupération et manipulation des données, ...)
+    - configuration base de données : https://symfony.com/doc/current/doctrine.html#configuring-the-database
+    - liste des types des propriétés : https://www.doctrine-project.org/projects/doctrine-orm/en/3.1/reference/basic-mapping.html
+- Twig :
+    - filtre : https://twig.symfony.com/doc/3.x/filters/index.html
+    - type de champs et options : https://symfony.com/doc/current/reference/forms/types.html

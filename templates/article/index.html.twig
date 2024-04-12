@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
+{% block title %}{{ 'list'|trans({}, 'article') }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <a href="{{ path('app_article_new') }}">{{ 'add'|trans({}, 'actions') }}</a>
+    <br/><br/>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/Symfony_7_training/src/Controller/ArticleController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/Symfony_7_training/templates/article/index.html.twig</code></li>
-    </ul>
-</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ 'name'|trans({}, 'article') }}</th>
+                <th>{{ 'description'|trans({}, 'article') }}</th>
+                <th>{{ 'price'|trans({}, 'article') }}</th>
+                <th>{{ 'image'|trans({}, 'article') }}</th>
+                <th>{{ 'view'|trans({}, 'actions') }}</th>
+                <th>{{ 'edit'|trans({}, 'actions') }}</th>
+                <th>{{ 'delete'|trans({}, 'actions') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.name }}</td>
+                <td>{{ article.description|u.truncate(30, '...') }}</td>
+                <td>{{ article.price|format_currency('EUR') }}</td>
+                <td><img src="{{ asset('storage/article/' ~ article.image) }}"></td>
+                <td><a href="{{ path('app_article_show', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="view"/></a></td>
+                <td><a href="{{ path('app_article_edit', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color-glass/48/pencil.png" alt="form"/></a></td>
+                <td>{{ include('article/_delete_form.html.twig') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">{{ 'no_article'|trans({}, 'article') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

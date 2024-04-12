@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'form'|trans({}, 'article') }}{% endblock %}
+
+{% block body %}
+    {{ include('article/_form.html.twig', {'button_label':  'edit'|trans({}, 'actions') }) }}
+    <br/>
+    <a href="{{ path('app_article_index') }}">{{ 'cancel'|trans({}, 'actions') }}</a>
+{% endblock %}
