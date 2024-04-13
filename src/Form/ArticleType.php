@@ -39,8 +39,8 @@ class ArticleType extends AbstractType
                 'label' => $this->translator->trans('price', [], 'article'),
                 'html5' => true
             ])
-            ->add('image', FileType::class,[
-                'required' => true,
+            ->add('image', FileType::class, [
+                'required' => (!$builder->getData()->getId()) ? true : false,
                 'label' => $this->translator->trans('image', [], 'article'),
                 'mapped' => false
             ])

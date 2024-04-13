@@ -67,11 +67,13 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 - dans la documentation certaines pages affichent une version antérieure, tant qu'elle est maintenu on peut s'en servir
 
 ## 6) Documentation
+Privilégier d'abord l'overview puis la barre de recherche (taper le début du mot pour élargir le résultat ou taper avec 1 ou 2 mots-clés entier).      
+Ne pas hésiter à aller directement sur le site des bibliothèques si possible.     
+
 - Symfony : https://symfony.com/doc/current/index.html
 - variables globales accessibles : https://symfony.com/doc/current/templates.html#the-app-global-variable 
 - doctrine : https://symfony.com/doc/current/doctrine.html (entity, migration, récupération et manipulation des données, ...)
     - configuration base de données : https://symfony.com/doc/current/doctrine.html#configuring-the-database
-    - liste des types des propriétés : https://www.doctrine-project.org/projects/doctrine-orm/en/3.1/reference/basic-mapping.html
-- Twig :
-    - filtre : https://twig.symfony.com/doc/3.x/filters/index.html
-    - type de champs et options : https://symfony.com/doc/current/reference/forms/types.html
+    - mapping : https://www.doctrine-project.org/projects/doctrine-orm/en/3.1/reference/basic-mapping.html
+- Twig - filtre : https://twig.symfony.com/doc/3.x/filters/index.html
+- form - type de champs et options : https://symfony.com/doc/current/reference/forms/types.html

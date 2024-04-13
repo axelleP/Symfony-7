@@ -1,0 +1,6 @@
+{% if previous >= 0 %}
+    <a href="{{ path('app_article_index', { offset: previous }) }}">{{ 'previous'|trans({}, 'pagination')|raw }}</a>
+{% endif %}
+{% if next < articles|length %}
+    <a href="{{ path('app_article_index', { offset: next }) }}">{{ 'next'|trans({}, 'pagination')|raw }}</a>
+{% endif %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'form'|trans({}, 'article') }}{% endblock %}
+{% block title %}{{ parent() }} {{ 'form'|trans({}, 'article') }}{% endblock %}
 
 {% block body %}
     {{ include('article/_form.html.twig', {'button_label':  'add'|trans({}, 'actions') }) }}

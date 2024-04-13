@@ -2,23 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Symfony 7 training{% endblock %}</title>
+        <title>{% block title %}Symfony 7 training -{% endblock %}</title>
         <link rel="shorcut icon" type="image/png" href="{{ asset('img/favicon.png') }}">
         {% block stylesheets %}
         {% endblock %}
-
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
         {% block sidebar %}{% include "header.html.twig" %}{% endblock %}
+
         <label for="locale">{{ 'change_locale'|trans({}, 'localization') }}</label>
         <select onchange="window.location.href = this.value;" id="locale">
             <option value="{{ path('locale.change', {locale: 'en'|trans({}, 'localization')  })}}" {% if app.locale == 'en'|trans({}, 'localization') %} selected {% endif %}>{{ 'english'|trans({}, 'localization') }}</option>
             <option value="{{ path('locale.change', {locale: 'fr'|trans({}, 'localization')  })}}" {% if app.locale == 'fr'|trans({}, 'localization') %} selected {% endif %}>{{ 'french'|trans({}, 'localization') }}</option>
         </select>
         <br/><br/>
+
+        {% for message in app.flashes('error') %}
+            <div class="flash-error">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <br/>
+
         {% block body %}{% endblock %}
     </body>
 </html>

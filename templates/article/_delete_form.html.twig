@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('{{ 'confirm'|trans({}, 'actions') }}');">
+<form method="post" action="{{ path('app_article_delete', {id: article.id, offset: offset}) }}" onsubmit="return confirm('{{ 'confirm'|trans({}, 'actions') }}');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
     <button class="btn"><img width="48" height="48" src="https://img.icons8.com/color/48/delete-sign--v1.png" alt="delete"/></button>
 </form>
