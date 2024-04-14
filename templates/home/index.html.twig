@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'home'|trans({}, 'menu') }}{% endblock %}
+{% block title %}{{ parent() }} {{ 'home'|trans({}, 'menu') }}{% endblock %}
 
 {% block body %}
 

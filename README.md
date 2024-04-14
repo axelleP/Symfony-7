@@ -65,6 +65,14 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
 - un fichier se trouvant dans src/... doit avoir comme namespace App\...
 - exécuter du code avant d'appeler une route : il faut créer un listener sur kernel.request
 - dans la documentation certaines pages affichent une version antérieure, tant qu'elle est maintenu on peut s'en servir
+- config\packages\security.yaml :
+    - password_hashers : on peut ajouter une classe pour que Symfony hashe automatiquement le mot de passe (si l'attribut est != de "password" il faudra le paramètrer)
+    - providers : listes des fournisseurs utilisateurs. Chaque fournisseur indique ou charger les utilisateurs et par quoi les authentifier
+    - firewalls : 
+        - dev : définition des accès aux urls en env. dev
+        - main : définit pour un provider user la façon de l'authentifier (ex. appel d'un formulaire ou d'une route)
+    - access_control : définit l'accès à des routes selon le rôle utilisateur
+    - when@test : permet de surcharger la config de sécurité avec des paramètres différents selon l'env.
 
 ## 6) Documentation
 Privilégier d'abord l'overview puis la barre de recherche (taper le début du mot pour élargir le résultat ou taper avec 1 ou 2 mots-clés entier).      

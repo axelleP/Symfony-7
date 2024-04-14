@@ -3,8 +3,10 @@
 {% block title %}{{ parent() }} {{ 'list'|trans({}, 'article') }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_article_new') }}">{{ 'add'|trans({}, 'actions') }}</a>
-    <br/><br/>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_article_new') }}">{{ 'add'|trans({}, 'actions') }}</a>
+        <br/><br/>
+    {% endif %}
 
     {% if articles|length > 0 %}
         <div>{{ 'num_of_articles'|trans({ count: articles|length }, 'article') }}</div>
@@ -20,8 +22,10 @@
                     <th>{{ 'price'|trans({}, 'article') }}</th>
                     <th>{{ 'image'|trans({}, 'article') }}</th>
                     <th>{{ 'view'|trans({}, 'actions') }}</th>
-                    <th>{{ 'edit'|trans({}, 'actions') }}</th>
-                    <th>{{ 'delete'|trans({}, 'actions') }}</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>{{ 'edit'|trans({}, 'actions') }}</th>
+                        <th>{{ 'delete'|trans({}, 'actions') }}</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +36,10 @@
                     <td>{{ article.price|format_currency('EUR') }}</td>
                     <td><img src="{{ asset('uploads/articles/' ~ article.image) }}"></td>
                     <td><a href="{{ path('app_article_show', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="view"/></a></td>
-                    <td><a href="{{ path('app_article_edit', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color-glass/48/pencil.png" alt="form"/></a></td>
-                    <td>{{ include('article/_delete_form.html.twig') }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="{{ path('app_article_edit', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color-glass/48/pencil.png" alt="form"/></a></td>
+                        <td>{{ include('article/_delete_form.html.twig') }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

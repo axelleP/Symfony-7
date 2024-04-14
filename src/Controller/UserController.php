@@ -28,7 +28,7 @@ class UserController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $lastUsername = ($error) ? $authenticationUtils->getLastUsername() : '';
 
         return $this->redirectToRoute('home', [
             'error' => (!empty($error)) ? 'failed' : '',
