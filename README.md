@@ -1,7 +1,17 @@
 # <h1 align="center">👨‍💻 Entraînement Symfony 7 👩‍💻</h1>
 
 ## Exemples de code
-
+- database :
+   - migration : [Version20240412111200.php](migrations\Version20240412111200.php)
+   - fixture : [ArticleFixtures.php](src\DataFixtures\ArticleFixtures.php)
+- entity : [Article.php](src\Entity\Article.php)
+- repository : [ArticleRepository.php](src\Repository\ArticleRepository.php)
+- eventListener - request: [LocaleListener.php](src\EventListener\LocaleListener.php)
+- template - liste article : [index.html.twig](templates\article\index.html.twig)
+- classe formulaire article : [ArticleType.php](src\Form\ArticleType.php)
+- controller - article : [ArticleController.php](src\Controller\ArticleController.php)
+- service : [FileUploader.php](src\Service\FileUploader.php)
+- command : [GetJokeCommand.php](src\Command\GetJokeCommand.php)
 ___
 
 ## 1) Lancement
