@@ -57,6 +57,9 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
         - créer une fixture : `php bin/console make:fixture`
         - lancer les fixtures : `php bin/console doctrine:fixtures:load` ou `php bin/console doctrine:fixtures:load --append` pour ne pas supprimer les données existantes
     - créer un listener sur les requêtes : `php bin/console make:listener LocaleListener` puis choisir `kernel.request`
+    - commande : 
+        - création : `php bin/console make:command`
+        - lancement : `php bin/console app:get-joke`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis

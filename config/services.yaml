@@ -24,6 +24,14 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    # envoi le paramètre targetDirectory dans FileUploader pour indiquer ou stocker les images des articles
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%articleImage_directory%'
+
+    # pour chaques commandes on écrit les logs sur le channel command
+    command_handlers:
+        namespace: App\Command\
+        resource: '../src/Command'
+        tags: 
+            - { 'name': 'monolog.logger', 'channel': 'command' }

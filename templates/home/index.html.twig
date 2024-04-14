@@ -11,6 +11,10 @@
 
 <br/><br/>
 
+{% if joke %}
+    {{ joke }}
+{% endif %}
+
 {% if app.user is null %}
     <form method="post" action="{{ path('app_login') }}">
         {% if error %}

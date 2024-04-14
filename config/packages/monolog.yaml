@@ -1,6 +1,7 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - command
 
 when@dev:
     monolog:
@@ -9,7 +10,7 @@ when@dev:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
-                channels: ["!event"]
+                channels: ["!event", "!command"]
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
             #firephp:
@@ -22,6 +23,12 @@ when@dev:
                 type: console
                 process_psr_3_messages: false
                 channels: ["!event", "!doctrine", "!console"]
+            # configure le chemin du fichier des logs du channel command
+            file_log:
+                type: stream
+                path: "%kernel.logs_dir%/command_%kernel.environment%.log"
+                level: debug
+                channels: ["command"]
 
 when@test:
     monolog:
@@ -31,11 +38,17 @@ when@test:
                 action_level: error
                 handler: nested
                 excluded_http_codes: [404, 405]
-                channels: ["!event"]
+                channels: ["!event", "!command"]
             nested:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
+            # configure le chemin du fichier des logs du channel command
+            file_log:
+                type: stream
+                path: "%kernel.logs_dir%/command_%kernel.environment%.log"
+                level: debug
+                channels: ["command"]
 
 when@prod:
     monolog:
@@ -46,6 +59,7 @@ when@prod:
                 handler: nested
                 excluded_http_codes: [404, 405]
                 buffer_size: 50 # How many messages should be saved? Prevent memory leaks
+                channels: ["!command"]
             nested:
                 type: stream
                 path: php://stderr
@@ -60,3 +74,9 @@ when@prod:
                 channels: [deprecation]
                 path: php://stderr
                 formatter: monolog.formatter.json
+            # configure le chemin du fichier des logs du channel command
+            file_log:
+                type: stream
+                path: "%kernel.logs_dir%/command_%kernel.environment%.log"
+                level: debug
+                channels: ["command"]
