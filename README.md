@@ -12,6 +12,7 @@
 - controller : [ArticleController.php](src/Controller/ArticleController.php)
 - service : [FileUploader.php](src/Service/FileUploader.php)
 - command : [GetJokeCommand.php](src/Command/GetJokeCommand.php)
+- envoi d'un email : [EmailController.php](src/Controller/EmailController.php)
 ___
 
 ## 1) Lancement
@@ -70,6 +71,10 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
     - commande : 
         - création : `php bin/console make:command`
         - lancement : `php bin/console app:get-joke`
+    - email : 
+        - tester l'envoi sans code : `php bin/console mailer:test someone@example.com`
+        - consommer les messages : `php bin/console messenger:consume async`
+        - consommer un seul message pour tester : `php bin/console messenger:consume async --limit 1`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis
@@ -98,3 +103,4 @@ Ne pas hésiter à aller directement sur le site des bibliothèques si possible.
     - mapping : https://www.doctrine-project.org/projects/doctrine-orm/en/3.1/reference/basic-mapping.html
 - Twig - filtre : https://twig.symfony.com/doc/3.x/filters/index.html
 - form - type de champs et options : https://symfony.com/doc/current/reference/forms/types.html
+- envoyer/consommer des messages (email, sms, ...) : https://symfony.com/doc/current/messenger.html

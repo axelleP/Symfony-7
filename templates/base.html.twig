@@ -29,5 +29,11 @@
         <br/>
 
         {% block body %}{% endblock %}
+
+        <br/>
+
+        {{ render(controller(
+            'App\\Controller\\EmailController::subscribeNewsletter'
+        )) }}
     </body>
 </html>
