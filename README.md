@@ -1,4 +1,4 @@
-# <h1 align="center">👨‍💻 Symfony 7 👩‍💻</h1>
+# <h1 align="center">👨‍💻 Symfony 7 👩‍💻</h1> 
 
 ## Exemples de code
 - database :
