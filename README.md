@@ -1,4 +1,4 @@
-# <h1 align="center">👨‍💻 Entraînement Symfony 7 👩‍💻</h1>
+# <h1 align="center">👨‍💻 Symfony 7 👩‍💻</h1>
 
 ## Exemples de code
 - database :
@@ -41,7 +41,7 @@ Création de la base :
 
 Création d'une entité :
 - `php bin/console make:entity`
-- commpléter le fichier de l'entité générée (ex. ajouter un unique)
+- compléter le fichier de l'entité généré (ex. ajouter un unique)
 
 Création d'une migration : `php bin/console make:migration`    
 Exécution des migrations : `php bin/console doctrine:migrations:migrate`
@@ -74,7 +74,7 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
     - email : 
         - tester l'envoi sans code : `php bin/console mailer:test someone@example.com`
         - consommer les messages : `php bin/console messenger:consume async`
-        - consommer un seul message pour tester : `php bin/console messenger:consume async --limit 1`
+        - consommer un seul message : `php bin/console messenger:consume async --limit 1`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis
