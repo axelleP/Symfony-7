@@ -35,7 +35,6 @@ class GetJokeCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            //throw new \Exception('test exception');
             $startTime = microtime(true);
             $output->writeln('Début du traitement');
 

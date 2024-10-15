@@ -16,9 +16,12 @@
 ___
 
 ## 1) Lancement
-Lancer WampServer avec PHP à partir de la version 8.2.    
+Env. :       
+- PHP : >=8.2      
+- MySQL : 8.0.27      
 
-Exécuter `symfony server:start` et se rendre sur http://localhost:8000/        
+Démarrage : `symfony server:start` => site accessible sur http://localhost:8000/       
+Arrêt : `symfony server:stop`       
 
 ## 2) Configuration
 - /config
