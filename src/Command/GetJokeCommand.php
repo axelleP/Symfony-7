@@ -18,11 +18,9 @@ use Psr\Log\LoggerInterface;
 )]
 class GetJokeCommand extends Command
 {
-    private $logger;
 
-    public function __construct(private HttpClientInterface $client, private CacheInterface $pool, LoggerInterface $logger)
+    public function __construct(private HttpClientInterface $client, private CacheInterface $pool, private LoggerInterface $logger)
     {
-        $this->logger = $logger;
         parent::__construct();
     }
 
@@ -33,28 +31,27 @@ class GetJokeCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $io->progressStart(100);
 
         try {
             $startTime = microtime(true);
-            $output->writeln('Début du traitement');
+            $client = $this->client;
 
-            //appel api
-            $response = $this->client->request(
-                'GET',
-                'http://official-joke-api.appspot.com/random_joke'
-            );
-            $content = $response->getContent();
-            $content = $response->toArray();
-
-            //mise en cache
-            $this->pool->get('joke', function (ItemInterface $item) use ($content): string {
+            //si l'élement n'existe pas : appel api + mise en cache 
+            $this->pool->get('joke', function (ItemInterface $item) use ($client): string {
                 $item->expiresAfter(new \DateInterval('P1D'));
-                $computedValue = $content['setup'] . ' : ' . $content['punchline'];
-                return $computedValue;
+                $response = $client->request(
+                    'GET',
+                    'http://official-joke-api.appspot.com/random_joke'
+                );
+                $content = $response->toArray();
+                return $content['setup'] . ' : ' . $content['punchline'];
             });
 
+            $io->progressAdvance(100);
+            $io->progressFinish();
+
             $endTime = microtime(true);
-            $output->writeln('Fin du traitement');
             $executionTime = date('H:i:s', $endTime - $startTime);
             $output->writeln('Temps d\'exécution : ' . $executionTime);
 

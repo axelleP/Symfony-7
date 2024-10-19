@@ -32,9 +32,9 @@
             {% for article in articles %}
                 <tr>
                     <td>{{ article.name }}</td>
-                    <td>{{ article.description|u.truncate(30, '...') }}</td>
+                    <td>{{ article.description|u.truncate(30, '...')|nl2br }}</td>
                     <td>{{ article.price|format_currency('EUR') }}</td>
-                    <td><img src="{{ asset('uploads/articles/' ~ article.image) }}"></td>
+                    <td><img src="{{ asset(article.fullPathImage) }}"></td>
                     <td><a href="{{ path('app_article_show', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="view"/></a></td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td><a href="{{ path('app_article_edit', {'id': article.id}) }}"><img width="48" height="48" src="https://img.icons8.com/color-glass/48/pencil.png" alt="form"/></a></td>

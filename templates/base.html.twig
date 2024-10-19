@@ -15,8 +15,8 @@
 
         <label for="locale">{{ 'change_locale'|trans({}, 'localization') }}</label>
         <select onchange="window.location.href = this.value;" id="locale">
-            <option value="{{ path('locale.change', {locale: 'en'|trans({}, 'localization')  })}}" {% if app.locale == 'en'|trans({}, 'localization') %} selected {% endif %}>{{ 'english'|trans({}, 'localization') }}</option>
-            <option value="{{ path('locale.change', {locale: 'fr'|trans({}, 'localization')  })}}" {% if app.locale == 'fr'|trans({}, 'localization') %} selected {% endif %}>{{ 'french'|trans({}, 'localization') }}</option>
+            <option value="{{ path('app_user_change_locale', {locale: 'en'|trans({}, 'localization')  })}}" {% if app.locale == 'en'|trans({}, 'localization') %} selected {% endif %}>{{ 'english'|trans({}, 'localization') }}</option>
+            <option value="{{ path('app_user_change_locale', {locale: 'fr'|trans({}, 'localization')  })}}" {% if app.locale == 'fr'|trans({}, 'localization') %} selected {% endif %}>{{ 'french'|trans({}, 'localization') }}</option>
         </select>
         <br/><br/>
 

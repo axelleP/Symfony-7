@@ -37,7 +37,11 @@ class ArticleType extends AbstractType
             ->add('price', MoneyType::class, [
                 'required' => true,
                 'label' => $this->translator->trans('price', [], 'article'),
-                'html5' => true
+                'html5' => true,
+                'scale' => 2,
+                'attr' => [
+                    'step' => '0.01', // Permet d'utiliser des centimes dans le champ
+                ],
             ])
             ->add('image', FileType::class, [
                 'required' => (!$builder->getData()->getId()) ? true : false,

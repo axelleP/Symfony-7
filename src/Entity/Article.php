@@ -21,7 +21,7 @@ class Article
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?float $price = null;
+    private ?string $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
@@ -38,7 +38,7 @@ class Article
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -50,7 +50,7 @@ class Article
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -62,12 +62,12 @@ class Article
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): string
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(string $price): static
     {
         $this->price = $price;
 
@@ -84,5 +84,10 @@ class Article
         $this->image = $image;
 
         return $this;
+    }
+
+    public function getFullPathImage(): string
+    {
+        return 'uploads/articles/' . $this->getImage();
     }
 }

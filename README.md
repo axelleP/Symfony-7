@@ -47,7 +47,8 @@ Création d'une entité :
 - compléter le fichier de l'entité généré (ex. ajouter un unique)
 
 Création d'une migration : `php bin/console make:migration`    
-Exécution des migrations : `php bin/console doctrine:migrations:migrate`
+Exécution des migrations : `php bin/console doctrine:migrations:migrate`    
+Revenir à une migration spécifique : `php bin/console doctrine:migrations:migrate 'DoctrineMigrations\Version20240411143108'`     
 
 ### Créer un système d'authentification utilisateur
 - `php bin/console make:user`
@@ -93,7 +94,7 @@ Exécution des migrations : `php bin/console doctrine:migrations:migrate`
         - dev : définition des accès aux urls en env. dev
         - main : définit pour un provider user la façon de l'authentifier (ex. appel d'un formulaire ou d'une route)
     - access_control : définit l'accès à des routes selon le rôle utilisateur
-    - when@test : permet de surcharger la config de sécurité avec des paramètres différents selon l'env.
+    - when@test : permet de surcharger la config avec des paramètres différents selon l'env.
 
 ## 6) Documentation
 Privilégier d'abord l'overview puis la barre de recherche (taper le début du mot pour élargir le résultat ou taper avec 1 ou 2 mots-clés entier).      

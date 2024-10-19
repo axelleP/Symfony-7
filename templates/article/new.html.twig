@@ -5,5 +5,5 @@
 {% block body %}
     {{ include('article/_form.html.twig', {'button_label':  'add'|trans({}, 'actions') }) }}
     <br/>
-    <a href="{{ path('app_article_index') }}">{{ 'cancel'|trans({}, 'actions') }}</a>
+    <a href="{{ path('app_article_list') }}">{{ 'cancel'|trans({}, 'actions') }}</a>
 {% endblock %}

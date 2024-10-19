@@ -7,12 +7,12 @@
 
     {{ form_row(form.image) }}
     {% if article.image is not null %}
-        <img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="Image de l'article">
+        <img src="{{ asset(article.fullPathImage) }}" alt="Image de l'article">
     {% endif %}
     {% if form_errors(form.image) %}
         <div class="error-message">{{ form_errors(form.image) }}</div>
     {% endif %}
     
     <br/><br/>
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button type="submit" class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

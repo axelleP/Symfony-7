@@ -17,7 +17,7 @@ class UserController extends AbstractController
     ) {
     }
 
-    #[Route('/change-locale/{locale}', name: 'locale.change', requirements: ['locale' => '[a-z]{2}'])]
+    #[Route('/change-locale/{locale}', name: 'app_user_change_locale', requirements: ['locale' => '[a-z]{2}'])]
     public function changeLocale(Request $request, string $locale): Response
     {
         $request->getSession()->set('_locale', $locale);
@@ -30,16 +30,16 @@ class UserController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = ($error) ? $authenticationUtils->getLastUsername() : '';
 
-        return $this->redirectToRoute('home', [
+        return $this->redirectToRoute('app_home_index', [
             'error' => (!empty($error)) ? 'failed' : '',
             'lastUsername' => $lastUsername
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '/logout', name: 'app_user_logout')]
     public function logout(Security $security): Response
     {
         $security->logout(false);
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_home_index');
     }
 }

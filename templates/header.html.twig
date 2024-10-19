@@ -1,10 +1,10 @@
 <header>
     <nav>
         <ul>
-            <li><a href="{{ path('home') }}">{{ 'home'|trans({}, 'menu') }}</a></li>
-            <li><a href="{{ path('app_article_index') }}">{{ 'list'|trans({}, 'article') }}</a></li>
+            <li><a href="{{ path('app_home_index') }}">{{ 'home'|trans({}, 'menu') }}</a></li>
+            <li><a href="{{ path('app_article_list') }}">{{ 'list'|trans({}, 'article') }}</a></li>
             {% if app.user %}
-                <li><a onclick="js:return confirm('{{ 'confirm_signout'|trans({}, 'actions') }}')" href="{{ path('app_logout') }}">{{ 'signout'|trans({}, 'actions') }}</a></li> 
+                <li><a onclick="js:return confirm('{{ 'confirm_signout'|trans({}, 'actions') }}')" href="{{ path('app_user_logout') }}">{{ 'signout'|trans({}, 'actions') }}</a></li> 
             {% endif %}
         </ul>
     </nav>

@@ -29,7 +29,7 @@ class NewsletterSubscriptionType extends AbstractType
                 'required' => true,
                 'label' => $this->translator->trans('form.label', [], 'email')
             ])
-            ->setAction($this->urlGenerator->generate('app_subscribeNewsletter'))
+            ->setAction($this->urlGenerator->generate('app_subscribe_newsletter'))
             ->add($this->translator->trans('send', [], 'actions'), SubmitType::class)
         ;
     }

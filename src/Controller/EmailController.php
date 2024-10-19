@@ -22,7 +22,7 @@ class EmailController extends AbstractController
         $this->mailer = $mailer;
     }
 
-    #[Route('/subscribe-newsletter', name: 'app_subscribeNewsletter')]
+    #[Route('/subscribe-newsletter', name: 'app_subscribe_newsletter')]
     public function subscribeNewsletter(Request $request, LoggerInterface $logger): Response
     {
         $form = $this->createForm(NewsletterSubscriptionType::class);
@@ -44,7 +44,7 @@ class EmailController extends AbstractController
                 $logger->error($th->getMessage());
             }
             
-            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('email/subscribeNewsletter.html.twig', ['form' => $form]);

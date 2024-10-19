@@ -10,7 +10,7 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'app_home_index')]
     public function index(Request $request, CacheItemPoolInterface $cacheItemPool): Response
     {
         $joke = $cacheItemPool->getItem('joke')->get();

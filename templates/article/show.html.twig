@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <th>{{ 'description'|trans({}, 'article') }}</th>
-                <td>{{ article.description }}</td>
+                <td>{{ article.description|nl2br }}</td>
             </tr>
             <tr>
                 <th>{{ 'price'|trans({}, 'article') }}</th>
@@ -19,10 +19,10 @@
             </tr>
             <tr>
                 <th>{{ 'image'|trans({}, 'article') }}</th>
-                <td><img src="{{ asset('uploads/articles/' ~ article.image) }}"></td>
+                <td><img src="{{ asset(article.fullPathImage) }}"></td>
             </tr>
         </tbody>
     </table>
     <br/><br/>
-    <a href="{{ path('app_article_index') }}">{{ 'back'|trans({}, 'actions') }}</a>
+    <a href="{{ path('app_article_list') }}">{{ 'back'|trans({}, 'actions') }}</a>
 {% endblock %}

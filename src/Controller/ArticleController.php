@@ -18,13 +18,13 @@ use App\Service\FileUploader;
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/list', name: 'app_article_index', methods: ['GET'])]
-    public function index(Request $request, ArticleRepository $articlesRepository): Response
+    #[Route('/list', name: 'app_article_list', methods: ['GET'])]
+    public function list(Request $request, ArticleRepository $articlesRepository): Response
     {
         $offset = max(0, $request->query->getInt('offset', 0));
         $paginator = $articlesRepository->getArticlePaginator($offset);
 
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/list.html.twig', [
             'articles' => $paginator,
             'offset' => $offset,
             'previous' => $offset - ArticleRepository::PAGINATOR_PER_PAGE,
@@ -32,7 +32,15 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/new', name: 'app_article_new', methods: ['GET', 'POST'])]
+    #[Route('/show/{id<\d+>}', name: 'app_article_show', methods: ['GET'])]
+    public function show(Article $article): Response
+    {
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+    #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $error = false;
@@ -64,15 +72,8 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article): Response
-    {
-        return $this->render('article/show.html.twig', [
-            'article' => $article,
-        ]);
-    }
-
-    #[Route('/admin/edit/{id}', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    
+    #[Route('/edit/{id<\d+>}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $error = false;
@@ -105,7 +106,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/delete/{id}', name: 'app_article_delete', methods: ['POST'])]
+    #[Route('/delete/{id<\d+>}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $offset = max(0, $request->query->getInt('offset', 0));
@@ -115,13 +116,13 @@ class ArticleController extends AbstractController
                 $fileUploader->remove($article->getImage());
             } catch (FileException $e) {
                 $this->addFlash('error', $e->getMessage());
-                return $this->redirectToRoute('app_article_index', ['offset' => $offset], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_article_list', ['offset' => $offset], Response::HTTP_SEE_OTHER);
             }
             
             $entityManager->remove($article);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_article_list', [], Response::HTTP_SEE_OTHER);
     }
 }
