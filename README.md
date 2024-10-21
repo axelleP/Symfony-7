@@ -8,11 +8,12 @@
 - repository : [ArticleRepository.php](src/Repository/ArticleRepository.php)
 - eventListener - request : [LocaleListener.php](src/EventListener/LocaleListener.php)
 - template : [index.html.twig](templates/article/index.html.twig)
-- classe formulaire : [ArticleType.php](src/Form/ArticleType.php)
+- form classes : [ArticleType.php](src/Form/ArticleType.php)
 - controller : [ArticleController.php](src/Controller/ArticleController.php)
 - service : [FileUploader.php](src/Service/FileUploader.php)
-- command : [GetJokeCommand.php](src/Command/GetJokeCommand.php)
-- envoi d'un email : [EmailController.php](src/Controller/EmailController.php)
+- command - HTTP client - cache : [GetJokeCommand.php](src/Command/GetJokeCommand.php)
+- session : Ligne 23 - [UserController.php](src/Controller/UserController.php) 
+- envoi d'un email - log : [EmailController.php](src/Controller/EmailController.php)
 ___
 
 ## 1) Lancement

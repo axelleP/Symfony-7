@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ArticleType extends AbstractType
 {
@@ -46,6 +47,13 @@ class ArticleType extends AbstractType
             ->add('image', FileType::class, [
                 'required' => (!$builder->getData()->getId()) ? true : false,
                 'label' => $this->translator->trans('image', [], 'article'),
+                'constraints' => [
+                    new Assert\Image([
+                        'maxSize' => '2M',
+                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'],
+                        'mimeTypesMessage' => $this->translator->trans('article.image.format', [], 'validation'),
+                    ]),
+                ],
                 'mapped' => false
             ])
         ;

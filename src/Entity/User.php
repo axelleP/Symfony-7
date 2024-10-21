@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -17,21 +18,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Email(message: 'email')]
+    #[Assert\Length(
+        max: 180,
+        maxMessage: 'user.email.length',
+    )]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Json(message: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Regex(
+        pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
+        message: 'user.password.format'
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'user.username.length',
+    )]
     private ?string $username = null;
 
     public function getId(): ?int

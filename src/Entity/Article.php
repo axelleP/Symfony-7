@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -15,15 +16,32 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'article.name.length',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Assert\Type('numeric')]
+    #[Assert\NotBlank(message: 'not_blank')]
+    #[Assert\Positive(message: 'positive')]
+    #[Assert\Regex(
+        pattern: '/^\d+(\.\d{1,2})?$/',
+        message: 'decimal_max_2'
+    )]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank(message: 'not_blank')]
     private ?string $image = null;
 
     public function getId(): ?int
