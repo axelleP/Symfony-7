@@ -59,27 +59,29 @@ Revenir à une migration spécifique : `php bin/console doctrine:migrations:migr
 - plus d'infos : https://symfony.com/doc/current/security.html#authentication-identifying-logging-in-the-user
 
 ## 3) Commandes
-- nettoyer le cache : `php bin/console cache:clear`
 - liste des commandes disponibles : `php bin/console`
 - avoir le détail d'une commande en rajoutant `--help`. ex. : `php bin/console doctrine:fixtures:load --help`
-- exemples commandes :
-    - liste des routes définies : `php bin/console debug:router`
+- nettoyer le cache : `php bin/console cache:clear`
+- liste des routes définies : `php bin/console debug:router`
+- création :
     - créer automatiquement contrôleur/liste/vue/formulaire/... (CRUD) pour une entité donnée : `php bin/console make:crud`
     - créer un contrôleur : `php bin/console make:controller HomeController`
     - créer un modèle : `php bin/console make:entity`
+    - créer une migration après modification d'un modèle : `php bin/console make:migration`
     - créer un formulaire dans une classe : `php bin/console make:form`
     - créer des données de tests : 
         - installer la bibliothèque : `composer require orm-fixtures --dev`
         - créer une fixture : `php bin/console make:fixture`
         - lancer les fixtures : `php bin/console doctrine:fixtures:load` ou `php bin/console doctrine:fixtures:load --append` pour ne pas supprimer les données existantes
     - créer un listener sur les requêtes : `php bin/console make:listener LocaleListener` puis choisir `kernel.request`
-    - commande : 
-        - création : `php bin/console make:command`
-        - lancement : `php bin/console app:get-joke`
-    - email : 
-        - tester l'envoi sans code : `php bin/console mailer:test someone@example.com`
-        - consommer les messages : `php bin/console messenger:consume async`
-        - consommer un seul message : `php bin/console messenger:consume async --limit 1`
+- commande : 
+    - création : `php bin/console make:command`
+    - lancement : `php bin/console app:get-joke`
+- email : 
+    - tester l'envoi sans code : `php bin/console mailer:test someone@example.com`
+    - consommer les messages : `php bin/console messenger:consume async`
+    - consommer un seul message : `php bin/console messenger:consume async --limit 1`
+- lancer les tests unitaires : `php bin/phpunit`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis

@@ -35,9 +35,9 @@ class ArticleType extends AbstractType
                 'label' => $this->translator->trans('description', [], 'article'),
                 'attr' => ['rows' => 5, 'cols' => 40]
             ])
-            ->add('price', MoneyType::class, [
+            ->add('priceHT', MoneyType::class, [
                 'required' => true,
-                'label' => $this->translator->trans('price', [], 'article'),
+                'label' => $this->translator->trans('price_HT', [], 'article'),
                 'html5' => true,
                 'scale' => 2,
                 'attr' => [

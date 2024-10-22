@@ -7,9 +7,13 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use App\Trait\CalculsTrait;
+
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
+    use CalculsTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -37,11 +41,10 @@ class Article
         pattern: '/^\d+(\.\d{1,2})?$/',
         message: 'decimal_max_2'
     )]
-    private ?string $price = null;
+    private ?string $priceHT = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Type('string')]
-    #[Assert\NotBlank(message: 'not_blank')]
     private ?string $image = null;
 
     public function getId(): ?int
@@ -80,14 +83,14 @@ class Article
         return $this;
     }
 
-    public function getPrice(): string
+    public function getPriceHT(): string
     {
-        return $this->price;
+        return $this->priceHT;
     }
 
-    public function setPrice(string $price): static
+    public function setPriceHT(string $priceHT): static
     {
-        $this->price = $price;
+        $this->priceHT = $priceHT;
 
         return $this;
     }
@@ -107,5 +110,10 @@ class Article
     public function getFullPathImage(): string
     {
         return 'uploads/articles/' . $this->getImage();
+    }
+
+    public function getPriceTTC(): float
+    {
+       return $this->calculateTTC($this->priceHT, 20);
     }
 }

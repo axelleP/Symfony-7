@@ -14,8 +14,12 @@
                 <td>{{ article.description|nl2br }}</td>
             </tr>
             <tr>
-                <th>{{ 'price'|trans({}, 'article') }}</th>
-                <td>{{ article.price|format_currency('EUR') }}</td>
+                <th>{{ 'price_HT'|trans({}, 'article') }}</th>
+                <td>{{ article.priceHT|format_currency('EUR') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'price_TTC'|trans({}, 'article') }}</th>
+                <td>{{ article.priceTTC|format_currency('EUR') }}</td>
             </tr>
             <tr>
                 <th>{{ 'image'|trans({}, 'article') }}</th>

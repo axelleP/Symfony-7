@@ -74,7 +74,7 @@ return [
     'open'            => 'Open',
     'open_website'    => 'Open on the website',
     'preview'         => 'Preview',
-    'price'           => 'Price',
+    'price_HT'           => 'Price',
     'restore'         => 'Restore',
     'save'            => 'Save',
     'save_and_close'  => 'Save & Close',
