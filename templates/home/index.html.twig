@@ -6,7 +6,7 @@
 
 {{ 'welcome'|trans({}, 'home') }}
 {% if app.user %}
-    {{ app.user.username }}
+    <div>{{ app.user.username }}</div>
 {% endif %}
 
 <br/><br/>
@@ -16,7 +16,7 @@
 {% endif %}
 
 {% if app.user is null %}
-    <form method="post" action="{{ path('app_login') }}">
+    <form id="form-login" method="post" action="{{ path('app_login') }}">
         {% if error %}
             <div class="alert alert-danger">{{ error|trans({}, 'auth') }}</div>
             <br/>

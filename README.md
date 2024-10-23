@@ -14,6 +14,7 @@
 - command - HTTP client - cache : [GetJokeCommand.php](src/Command/GetJokeCommand.php)
 - session : Ligne 23 - [UserController.php](src/Controller/UserController.php) 
 - envoi d'un email - log : [EmailController.php](src/Controller/EmailController.php)
+- test functional : [LoginTest.php](tests\Functional\LoginTest.php)
 ___
 
 ## 1) Lancement
@@ -81,7 +82,9 @@ Revenir à une migration spécifique : `php bin/console doctrine:migrations:migr
     - tester l'envoi sans code : `php bin/console mailer:test someone@example.com`
     - consommer les messages : `php bin/console messenger:consume async`
     - consommer un seul message : `php bin/console messenger:consume async --limit 1`
-- lancer les tests unitaires : `php bin/phpunit`
+- tests :
+    - créer un test : `php bin/console make:test` 
+    - lancer les tests : `php bin/phpunit`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis
