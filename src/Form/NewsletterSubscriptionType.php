@@ -27,7 +27,8 @@ class NewsletterSubscriptionType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label' => $this->translator->trans('form.label', [], 'email')
+                'label' => $this->translator->trans('form.label', [], 'email'),
+                'empty_data' => ''
             ])
             ->setAction($this->urlGenerator->generate('app_subscribe_newsletter'))
             ->add($this->translator->trans('send', [], 'actions'), SubmitType::class)

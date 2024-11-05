@@ -50,6 +50,7 @@ Création d'une entité :
 
 Création d'une migration : `php bin/console make:migration`    
 Exécution des migrations : `php bin/console doctrine:migrations:migrate`    
+Annuler la dernière migration : `php bin/console doctrine:migrations:migrate prev`     
 Revenir à une migration spécifique : `php bin/console doctrine:migrations:migrate 'DoctrineMigrations\Version20240411143108'`     
 
 ### Créer un système d'authentification utilisateur
@@ -71,9 +72,13 @@ Revenir à une migration spécifique : `php bin/console doctrine:migrations:migr
     - créer une migration après modification d'un modèle : `php bin/console make:migration`
     - créer un formulaire dans une classe : `php bin/console make:form`
     - créer des données de tests : 
-        - installer la bibliothèque : `composer require orm-fixtures --dev`
+        - installer la bibliothèque fixture : `composer require orm-fixtures --dev`
         - créer une fixture : `php bin/console make:fixture`
-        - lancer les fixtures : `php bin/console doctrine:fixtures:load` ou `php bin/console doctrine:fixtures:load --append` pour ne pas supprimer les données existantes
+        - lancer les fixtures :
+            - supprime d'abord toutes les données en bdd : `php bin/console doctrine:fixtures:load`
+            - conserve toutes les données en bdd : `php bin/console doctrine:fixtures:load --append`
+        - lancer les fixture appartenant à un groupe spécifique : `php bin/console doctrine:fixtures:load --group=user` (voir la doc pour configurer la classe fixture)
+        - utiliser faker : `composer require fakerphp/faker`
     - créer un listener sur les requêtes : `php bin/console make:listener LocaleListener` puis choisir `kernel.request`
 - commande : 
     - création : `php bin/console make:command`
@@ -85,6 +90,7 @@ Revenir à une migration spécifique : `php bin/console doctrine:migrations:migr
 - tests :
     - créer un test : `php bin/console make:test` 
     - lancer les tests : `php bin/phpunit`
+- lancer le sass : `php bin/console sass:build --watch`
     
 ## 4) Extensions
 - TWIG pack de Bajdzis

@@ -18,7 +18,7 @@ class ArticleFixtures extends Fixture
             $article = new Article();
             $article->setName($faker->word());
             $article->setDescription($faker->text());
-            $article->setPrice($faker->randomFloat(2, 0, 999999.99));
+            $article->setPriceHT($faker->randomFloat(2, 0, 999999.99));
             $article->setImage('1656001927_bb633eb9d4e4e96ba1ab.png');
             $manager->persist($article);
         }

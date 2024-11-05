@@ -28,12 +28,14 @@ class ArticleType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'required' => true,
-                'label' => $this->translator->trans('name', [], 'article')
+                'label' => $this->translator->trans('name', [], 'article'),
+                'empty_data' => ''
             ])
             ->add('description', TextareaType::class, [
                 'required' => true,
                 'label' => $this->translator->trans('description', [], 'article'),
-                'attr' => ['rows' => 5, 'cols' => 40]
+                'attr' => ['rows' => 5, 'cols' => 40],
+                'empty_data' => ''
             ])
             ->add('priceHT', MoneyType::class, [
                 'required' => true,
@@ -43,6 +45,7 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'step' => '0.01', // Permet d'utiliser des centimes dans le champ
                 ],
+                'empty_data' => ''
             ])
             ->add('image', FileType::class, [
                 'required' => (!$builder->getData()->getId()) ? true : false,
@@ -54,6 +57,7 @@ class ArticleType extends AbstractType
                         'mimeTypesMessage' => $this->translator->trans('article.image.format', [], 'validation'),
                     ]),
                 ],
+                'empty_data' => '',
                 'mapped' => false
             ])
         ;
